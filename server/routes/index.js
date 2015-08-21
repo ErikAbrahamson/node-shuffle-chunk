@@ -1,11 +1,19 @@
 var express = require('express');
 var router = express.Router();
+// var shuffler = require('utility');
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Shuffle Chunk' });
 });
 
-function shuffle(array) {
+// router.post('/', function(req, res, next) {
+//   var numPeople = req.body.people;
+//   var chunks = req.body.chunks;
+//   var output = chunk()
+// })
+
+function shuffle(peopleList) {
+  var array = peopleList.replace(/,/g, '').split(' ');
   var arrayCopy = array.slice();
   var shuffled = [];
   while (arrayCopy.length > 0) {
