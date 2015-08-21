@@ -1,21 +1,3 @@
-var express = require('express');
-var router = express.Router();
-// var shuffle = require('/utility');
-
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Shuffle Chunk' });
-});
-
-router.post('/', function(req, res, next) {
-  var people = req.body.people;
-  var chunks = req.body.chunks;
-  var results = chunk(people, chunks);
-  res.render('index', {
-    title: 'Shuffle Chunk',
-    results: results
-  });
-});
-
 function shuffle(peopleList) {
   var array = peopleList.replace(/,/g, '').split(' ');
   var arrayCopy = array.slice();
@@ -27,7 +9,6 @@ function shuffle(peopleList) {
   }
   return shuffled;
 }
-
 function chunk(array, chunkSize) {
   var shuffledArray = shuffle(array);
   var temp = shuffledArray.slice();
@@ -45,5 +26,7 @@ function chunk(array, chunkSize) {
   }
   return chunkedArray;
 }
-
-module.exports = router;
+module.exports = {
+  shuffle: shuffle,
+  chunk: chunk
+};

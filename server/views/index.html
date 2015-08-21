@@ -36,6 +36,12 @@
   <div class="output">
     <hr>
     {{output}}
+    <br>
+    {% for result in results %}
+      {% if results.first %}<ul>{% endif %}
+      <li>{{result}}</li>
+      {% if results.last %}</ul>{% endif %}
+    {% endfor %}
   </div>
 
 </div
