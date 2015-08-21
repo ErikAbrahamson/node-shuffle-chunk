@@ -6,13 +6,23 @@ router.get('/', function(req, res, next) {
 });
 
 function shuffle(array) {
+  var arrayCopy = array.slice();
   var shuffled = [];
-  for (var i = 0; i < array.length; i++) {
-    var randomIndex = Math.floor(Math.random() * array.length);
-    shuffled.push(array[randomIndex]);
-    array.splice(randomIndex, 1);
+  while (arrayCopy.length > 0) {
+    var randomIndex = Math.floor(Math.random() * arrayCopy.length);
+    shuffled.push(arrayCopy[randomIndex]);
+    arrayCopy.splice(randomIndex, 1);
   }
-  return array;
+  return shuffled;
+}
+function chunk(array, chunkSize) {
+  var shuffledArray = shuffle(array);
+  var temp = shuffledArray.slice();
+  var chunkedArray = [];
+  for (var i = 0; i < temp.length; i +=chunkSize) {
+    chunkedArray.push(temp.slice(i, i + chunkSize));
+  }
+  return chunkedArray;
 }
 
 module.exports = router;
