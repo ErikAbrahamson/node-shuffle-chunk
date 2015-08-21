@@ -10,7 +10,6 @@ router.post('/', function(req, res, next) {
   var people = req.body.people;
   var chunks = parseInt(req.body.chunks);
   var results = chunk(people, chunks);
-  console.log(results);
   res.render('index', {
     title: 'Shuffle Chunk',
     results: results
