@@ -6,11 +6,15 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Shuffle Chunk' });
 });
 
-// router.post('/', function(req, res, next) {
-//   var numPeople = req.body.people;
-//   var chunks = req.body.chunks;
-//   var output = chunk()
-// })
+router.post('/', function(req, res, next) {
+  var people = req.body.people;
+  var chunks = req.body.chunks;
+  var calculate = chunk(people, chunks);
+  res.render('index', {
+    output: calculate,
+    title: 'Shuffle Chunk'
+  });
+});
 
 function shuffle(peopleList) {
   var array = peopleList.replace(/,/g, '').split(' ');
@@ -35,7 +39,7 @@ function chunk(array, chunkSize) {
   for (j; j < chunkedArray.length; j++) {
     if (chunkedArray[j].length !== chunkSize) {
       for (k; k < chunkSize - (chunkedArray[j].length - 1); k++) {
-        chunkedArray[j].push(Math.ceil(Math.random() * 10));
+        chunkedArray[j].push('Placeholder');
       }
     }
   }
