@@ -15,12 +15,21 @@ function shuffle(array) {
   }
   return shuffled;
 }
+
 function chunk(array, chunkSize) {
   var shuffledArray = shuffle(array);
   var temp = shuffledArray.slice();
   var chunkedArray = [];
-  for (var i = 0; i < temp.length; i +=chunkSize) {
+  var i = 0, j = 0, k = 0;
+  for (i; i < temp.length; i +=chunkSize) {
     chunkedArray.push(temp.slice(i, i + chunkSize));
+  }
+  for (j; j < chunkedArray.length; j++) {
+    if (chunkedArray[j].length !== chunkSize) {
+      for (k; k < chunkSize - (chunkedArray[j].length - 1); k++) {
+        chunkedArray[j].push(Math.ceil(Math.random() * 10));
+      }
+    }
   }
   return chunkedArray;
 }
