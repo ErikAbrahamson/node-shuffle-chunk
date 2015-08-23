@@ -18,12 +18,11 @@ router.post('/', function(req, res, next) {
 
 function shuffle(peopleList) {
   var array = peopleList.replace(/,/g, '').split(' ');
-  var arrayCopy = array.slice();
   var shuffled = [];
-  while (arrayCopy.length > 0) {
-    var randomIndex = Math.floor(Math.random() * arrayCopy.length);
-    shuffled.push(arrayCopy[randomIndex]);
-    arrayCopy.splice(randomIndex, 1);
+  while (array.length > 0) {
+    var randomIndex = Math.floor(Math.random() * array.length);
+    shuffled.push(array[randomIndex]);
+    array.splice(randomIndex, 1);
   }
   return shuffled;
 }
